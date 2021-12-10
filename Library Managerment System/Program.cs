@@ -16,7 +16,7 @@ namespace Library_Managerment_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminPage());
+            Application.Run(new login());
         }
     }
 }
