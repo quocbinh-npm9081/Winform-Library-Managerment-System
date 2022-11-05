@@ -54,18 +54,18 @@ namespace Library_Managerment_System
 
         private void btn_click_login(object sender, EventArgs e)
         {
-            if (text_userName.Text == "stuadmin" || text_userName.Text == "stustudent")
+            if (text_userName.Text == "admin" || text_userName.Text == "stu")
             {
-                if (text_password.Text == "admin" || text_password.Text == "student")
+                if (text_password.Text == "admin" || text_password.Text == "stu")
                 {
                     string userName = text_userName.Text;
-                    if (userName == "stuadmin")
+                    if (userName == "admin")
                     {
                         AdminPage adminHomePage = new AdminPage();
                         this.Hide();
                         adminHomePage.ShowDialog();
                     }
-                    if (userName == "stustudent")
+                    if (userName == "stu")
                     {
                         StudentPage userHomePage = new StudentPage();
                         this.Hide();

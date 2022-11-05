@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Library_Managerment_System
 {
     partial class BorrowBooks
@@ -33,17 +35,18 @@ namespace Library_Managerment_System
             this.txt_nameBook = new System.Windows.Forms.TextBox();
             this.txt_category = new System.Windows.Forms.TextBox();
             this.txt_author = new System.Windows.Forms.TextBox();
-            this.kryptonContextMenu1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
+            this.kryptonContextMenu1 = new System.Windows.Forms.ContextMenu();
             this.txt_quantity = new System.Windows.Forms.TextBox();
-            this.btn_add = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btn_log = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.kryptonButton3 = new System.Windows.Forms.Button();
+            this.btn_log = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.col_codeBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nameBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_releaseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_codeBook = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -98,32 +101,33 @@ namespace Library_Managerment_System
             // 
             // btn_add
             // 
+            this.btn_add.BackColor = System.Drawing.Color.LightBlue;
             this.btn_add.Location = new System.Drawing.Point(912, 110);
             this.btn_add.Name = "btn_add";
-            this.btn_add.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btn_add.Size = new System.Drawing.Size(146, 65);
             this.btn_add.TabIndex = 11;
-            this.btn_add.Values.Text = "Đặt sách";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_click);
+            this.btn_add.Text = "Đặt sách";
+            this.btn_add.UseVisualStyleBackColor = false;
             // 
             // kryptonButton3
             // 
+            this.kryptonButton3.BackColor = System.Drawing.Color.Gray;
             this.kryptonButton3.Location = new System.Drawing.Point(1064, 110);
             this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
             this.kryptonButton3.Size = new System.Drawing.Size(145, 65);
             this.kryptonButton3.TabIndex = 13;
-            this.kryptonButton3.Values.Text = "Sách của bạn";
-            this.kryptonButton3.Click += new System.EventHandler(this.btn_yourBooks_click);
+            this.kryptonButton3.Text = "Sách của bạn";
+            this.kryptonButton3.UseVisualStyleBackColor = false;
             // 
             // btn_log
             // 
+            this.btn_log.BackColor = System.Drawing.Color.OrangeRed;
             this.btn_log.Location = new System.Drawing.Point(912, 181);
             this.btn_log.Name = "btn_log";
-            this.btn_log.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleOrange;
             this.btn_log.Size = new System.Drawing.Size(297, 61);
             this.btn_log.TabIndex = 14;
-            this.btn_log.Values.Text = "Đăng xuất";
+            this.btn_log.Text = "Đăng xuất";
+            this.btn_log.UseVisualStyleBackColor = false;
             this.btn_log.Click += new System.EventHandler(this.btn_logout);
             // 
             // dgv
@@ -137,14 +141,15 @@ namespace Library_Managerment_System
             this.col_nameBook,
             this.col_author,
             this.col_category,
-            this.col_quantity});
+            this.col_quantity,
+            this.col_releaseDate});
             this.dgv.Location = new System.Drawing.Point(70, 432);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.Height = 28;
             this.dgv.Size = new System.Drawing.Size(1139, 267);
             this.dgv.TabIndex = 15;
-            this.dgv.SelectionChanged += new System.EventHandler(this.event_selectionChange);
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // col_codeBook
             // 
@@ -191,6 +196,15 @@ namespace Library_Managerment_System
             this.col_quantity.ReadOnly = true;
             this.col_quantity.Width = 110;
             // 
+            // col_releaseDate
+            // 
+            this.col_releaseDate.DataPropertyName = "createdAt";
+            this.col_releaseDate.HeaderText = "Ngày ra mắt";
+            this.col_releaseDate.MinimumWidth = 8;
+            this.col_releaseDate.Name = "col_releaseDate";
+            this.col_releaseDate.ReadOnly = true;
+            this.col_releaseDate.Width = 150;
+            // 
             // txt_codeBook
             // 
             this.txt_codeBook.BackColor = System.Drawing.Color.White;
@@ -221,8 +235,6 @@ namespace Library_Managerment_System
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(271, 33);
             this.comboBox1.TabIndex = 17;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.selected_value_change);
             // 
             // BorrowBooks
             // 
@@ -253,15 +265,20 @@ namespace Library_Managerment_System
 
         }
 
+        private void BorrowBooks_Load(object sender, EventArgs e)
+        {
+            
+        }
+
         #endregion
         private System.Windows.Forms.TextBox txt_nameBook;
         private System.Windows.Forms.TextBox txt_category;
         private System.Windows.Forms.TextBox txt_author;
-        private ComponentFactory.Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
+        private System.Windows.Forms.ContextMenu kryptonContextMenu1;
         private System.Windows.Forms.TextBox txt_quantity;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_add;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_log;
+        private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.Button kryptonButton3;
+        private System.Windows.Forms.Button btn_log;
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.TextBox txt_codeBook;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -270,5 +287,6 @@ namespace Library_Managerment_System
         private System.Windows.Forms.DataGridViewTextBoxColumn col_author;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_category;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_releaseDate;
     }
 }

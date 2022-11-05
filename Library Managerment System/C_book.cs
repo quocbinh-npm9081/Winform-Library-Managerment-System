@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library_Managerment_System
 {
-    [Serializable]
-    class C_book
+   
+    public class C_book
     {
         protected string m_codeBook;
         protected string m_nameBook;
@@ -70,7 +71,19 @@ namespace Library_Managerment_System
             set {
                 this.m_quantity = value;
             }
-        }      
+        }
+        public DateTime createdAt
+        {
+            get
+            {
+                return m_createdAt;
+            }
+            set
+            {
+                this.m_createdAt = value;
+            }
+        }
+
         public C_book(){
             this.m_codeBook = "";
             this.m_nameBook = "";
@@ -78,13 +91,14 @@ namespace Library_Managerment_System
             this.m_category = "";
             this.m_quantity = 0;
         }
-        public C_book(string codeBook, string nameBook, string author, string category, int quantity)
+        public C_book(DataRow row)
         {
-            this.m_codeBook = codeBook;
-            this.m_nameBook = nameBook;
-            this.m_author = author;
-            this.m_category = category;
-            this.m_quantity = quantity;
+            this.m_codeBook = row["bookID"].ToString();
+            this.m_nameBook = row["bookName"].ToString();
+            this.m_author = row["bookAuthor"].ToString();
+            this.m_category = row["bookCategory"].ToString();
+            this.m_quantity = (int)row["quantity"];
+            this.m_createdAt = DateTime.Parse(row["releaseDate"].ToString());
         }
     }
 

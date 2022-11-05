@@ -11,6 +11,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace Library_Managerment_System
 {
+    //
+    //TODO: Update databse when using function in this class 
+    //
     public partial class FormStore : Form
     {
         private LinkedList<C_YourBooks> yourBooks;
@@ -28,20 +31,7 @@ namespace Library_Managerment_System
         }
         private void FormStore_Load(object sender, EventArgs e)
         {
-            try
-            {
-                // bookList = new LinkedList<C_book>();
-                FileStream file = new FileStream("yourBooks.dat", FileMode.Open);
-                BinaryFormatter bf = new BinaryFormatter();
-                yourBooks = bf.Deserialize(file) as LinkedList<C_YourBooks>;
-                show(yourBooks);
-                file.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            show(yourBooks);
         }
 
         private void btn_back_click(object sender, EventArgs e)
@@ -91,14 +81,6 @@ namespace Library_Managerment_System
             if (validator())
             {
                 string code= txt_codeBook.Text;
-
-                FileStream file = new FileStream("books.dat", FileMode.Open);
-                BinaryFormatter bf = new BinaryFormatter();
-                books = bf.Deserialize(file) as LinkedList<C_book>;
-                //file.Close();
-                FileStream file_yourBooks = new FileStream("yourBooks.dat", FileMode.Open);
-                BinaryFormatter bf1 = new BinaryFormatter();
-                yourBooks = bf1.Deserialize(file_yourBooks) as LinkedList<C_YourBooks>;
                 //Cập nhập dữ liệu sách của admin
                 for(LinkedListNode<C_book> a = books.First; a != null; a = a.Next)
                 {
@@ -120,8 +102,6 @@ namespace Library_Managerment_System
                         break;
                     }
                 }
-                bf.Serialize(file, books);
-                file.Close();
                 //Cập nhập dữ liệu sách của Student
                 for(LinkedListNode<C_YourBooks> x = yourBooks.First; x!=null;x=x.Next  )
                 {
@@ -138,8 +118,6 @@ namespace Library_Managerment_System
                     }
                
                 }
-                bf1.Serialize(file_yourBooks, yourBooks);
-                file_yourBooks.Close();
                 MessageBox.Show("Trả sách thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 show(yourBooks);
 

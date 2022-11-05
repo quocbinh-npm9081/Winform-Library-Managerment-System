@@ -65,6 +65,8 @@
     <Compile Include="BorrowBooks.Designer.cs">
       <DependentUpon>BorrowBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\BookManager.cs" />
+    <Compile Include="Controller\DataController.cs" />
     <Compile Include="C_book.cs" />
     <Compile Include="C_YourBooks.cs" />
     <Compile Include="FormStore.cs">
@@ -107,6 +109,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="StudentPage.resx">
       <DependentUpon>StudentPage.cs</DependentUpon>
@@ -123,6 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img_C#_project\UI caidat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

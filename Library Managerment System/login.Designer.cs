@@ -44,8 +44,8 @@ namespace Library_Managerment_System
             this.label3 = new System.Windows.Forms.Label();
             this.text_password = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btn_login = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btn_exit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_login = new System.Windows.Forms.Button();
+            this.btn_exit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,22 +143,26 @@ namespace Library_Managerment_System
             // 
             // btn_login
             // 
+            this.btn_login.BackColor = System.Drawing.Color.LightBlue;
+            this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_login.Location = new System.Drawing.Point(86, 448);
             this.btn_login.Name = "btn_login";
-            this.btn_login.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
             this.btn_login.Size = new System.Drawing.Size(140, 41);
             this.btn_login.TabIndex = 10;
-            this.btn_login.Values.Text = "Đăng nhập";
+            this.btn_login.Text = "Đăng nhập";
+            this.btn_login.UseVisualStyleBackColor = false;
             this.btn_login.Click += new System.EventHandler(this.btn_click_login);
             // 
             // btn_exit
             // 
+            this.btn_exit.BackColor = System.Drawing.Color.OrangeRed;
+            this.btn_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_exit.Location = new System.Drawing.Point(246, 448);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleOrange;
             this.btn_exit.Size = new System.Drawing.Size(140, 41);
             this.btn_exit.TabIndex = 11;
-            this.btn_exit.Values.Text = "Thoát";
+            this.btn_exit.Text = "Thoát";
+            this.btn_exit.UseVisualStyleBackColor = false;
             this.btn_exit.Click += new System.EventHandler(this.btn_click_exit);
             // 
             // login
@@ -206,8 +210,8 @@ namespace Library_Managerment_System
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox text_password;
         private System.Windows.Forms.Panel panel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_login;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_exit;
+        private System.Windows.Forms.Button btn_login;
+        private System.Windows.Forms.Button btn_exit;
     }
 }
 

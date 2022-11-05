@@ -32,8 +32,8 @@ namespace Library_Managerment_System
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentPage));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_borroBook = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btn_myBooks = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_borroBook = new System.Windows.Forms.Button();
+            this.btn_myBooks = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,22 +60,24 @@ namespace Library_Managerment_System
             // 
             // btn_borroBook
             // 
+            this.btn_borroBook.BackColor = System.Drawing.Color.LightBlue;
             this.btn_borroBook.Location = new System.Drawing.Point(824, 200);
             this.btn_borroBook.Name = "btn_borroBook";
-            this.btn_borroBook.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btn_borroBook.Size = new System.Drawing.Size(273, 75);
             this.btn_borroBook.TabIndex = 2;
-            this.btn_borroBook.Values.Text = "Mượn sách";
+            this.btn_borroBook.Text = "Mượn sách";
+            this.btn_borroBook.UseVisualStyleBackColor = false;
             this.btn_borroBook.Click += new System.EventHandler(this.btn_click_borowBook);
             // 
             // btn_myBooks
             // 
+            this.btn_myBooks.BackColor = System.Drawing.Color.Gray;
             this.btn_myBooks.Location = new System.Drawing.Point(824, 302);
             this.btn_myBooks.Name = "btn_myBooks";
-            this.btn_myBooks.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
-            this.btn_myBooks.Size = new System.Drawing.Size(268, 73);
+            this.btn_myBooks.Size = new System.Drawing.Size(273, 73);
             this.btn_myBooks.TabIndex = 3;
-            this.btn_myBooks.Values.Text = "Sách của bạn";
+            this.btn_myBooks.Text = "Sách của bạn";
+            this.btn_myBooks.UseVisualStyleBackColor = false;
             this.btn_myBooks.Click += new System.EventHandler(this.btn_yourBooks_click);
             // 
             // StudentPage
@@ -103,7 +105,7 @@ namespace Library_Managerment_System
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_borroBook;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_myBooks;
+        private System.Windows.Forms.Button btn_borroBook;
+        private System.Windows.Forms.Button btn_myBooks;
     }
 }

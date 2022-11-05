@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Library_Managerment_System
 {
     partial class AdminPage
@@ -34,17 +36,17 @@ namespace Library_Managerment_System
             this.txt_nameBook = new System.Windows.Forms.TextBox();
             this.txt_author = new System.Windows.Forms.TextBox();
             this.txt_quantity = new System.Windows.Forms.TextBox();
-            this.btn_add = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btn_delete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.dgv_admin = new System.Windows.Forms.DataGridView();
             this.maSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tacGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loaiSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btn_save = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new System.Windows.Forms.Button();
+            this.kryptonButton2 = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
             this.txt_category = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_admin)).BeginInit();
             this.SuspendLayout();
@@ -91,21 +93,24 @@ namespace Library_Managerment_System
             // 
             // btn_add
             // 
-            this.btn_add.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Gallery;
+            this.btn_add.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btn_add.Location = new System.Drawing.Point(869, 132);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(147, 47);
             this.btn_add.TabIndex = 10;
-            this.btn_add.Values.Text = "Thêm";
+            this.btn_add.Text = "Thêm";
+            this.btn_add.UseVisualStyleBackColor = false;
             this.btn_add.Click += new System.EventHandler(this.event_click_add);
             // 
             // btn_delete
             // 
+            this.btn_delete.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btn_delete.Location = new System.Drawing.Point(1022, 185);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(147, 47);
             this.btn_delete.TabIndex = 11;
-            this.btn_delete.Values.Text = "Xóa";
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.UseVisualStyleBackColor = false;
             this.btn_delete.Click += new System.EventHandler(this.event_click_delete);
             // 
             // dgv_admin
@@ -177,30 +182,35 @@ namespace Library_Managerment_System
             // 
             // kryptonButton1
             // 
+            this.kryptonButton1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.kryptonButton1.Location = new System.Drawing.Point(869, 185);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(147, 47);
             this.kryptonButton1.TabIndex = 13;
-            this.kryptonButton1.Values.Text = "Sửa";
+            this.kryptonButton1.Text = "Sửa";
+            this.kryptonButton1.UseVisualStyleBackColor = false;
             this.kryptonButton1.Click += new System.EventHandler(this.event_edit_click);
             // 
             // kryptonButton2
             // 
+            this.kryptonButton2.BackColor = System.Drawing.Color.LightPink;
             this.kryptonButton2.Location = new System.Drawing.Point(869, 238);
             this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparklePurple;
             this.kryptonButton2.Size = new System.Drawing.Size(300, 72);
             this.kryptonButton2.TabIndex = 14;
-            this.kryptonButton2.Values.Text = "Đăng xuất";
+            this.kryptonButton2.Text = "Đăng xuất";
+            this.kryptonButton2.UseVisualStyleBackColor = false;
             this.kryptonButton2.Click += new System.EventHandler(this.event_logout_click);
             // 
             // btn_save
             // 
+            this.btn_save.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btn_save.Location = new System.Drawing.Point(1022, 132);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(148, 47);
             this.btn_save.TabIndex = 15;
-            this.btn_save.Values.Text = "Lưu";
+            this.btn_save.Text = "Lưu";
+            this.btn_save.UseVisualStyleBackColor = false;
             this.btn_save.Click += new System.EventHandler(this.event_save_click);
             // 
             // txt_category
@@ -255,17 +265,22 @@ namespace Library_Managerment_System
 
         }
 
+        private void AdminPage_Load(object sender, EventArgs e)
+        {
+           
+        }
+
         #endregion
         private System.Windows.Forms.TextBox txt_codeBook;
         private System.Windows.Forms.TextBox txt_nameBook;
         private System.Windows.Forms.TextBox txt_author;
         private System.Windows.Forms.TextBox txt_quantity;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_add;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_delete;
+        private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.DataGridView dgv_admin;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_save;
+        private System.Windows.Forms.Button kryptonButton1;
+        private System.Windows.Forms.Button kryptonButton2;
+        private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.DataGridViewTextBoxColumn maSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn tacGia;

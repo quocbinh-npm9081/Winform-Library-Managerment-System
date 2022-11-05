@@ -9,26 +9,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
+using Library_Managerment_System.Controller;
 
 namespace Library_Managerment_System
 {
+    //
+    //TODO: Fix function in this class form using file to database 
+    //
     public partial class AdminPage : Form
     {
-        private LinkedList<C_book> bookList;
+        private List<C_book> bookList;
         private login _login = new login();
         public AdminPage()
         {
+            bookList = BookManager.Instance.GetBookList();
             InitializeComponent();
+            show();
         }
-        private void show(LinkedList<C_book> bookList)
+        private void show()
         {
             BindingSource ds = new BindingSource();
             ds.DataSource = bookList.ToList();
             dgv_admin.DataSource = ds;
-            txt_codeBook.Text = "";
-            txt_nameBook.Text = "";
-            txt_author.Text = "";         
-            txt_quantity.Text = "";
         }
         private int validator_add()
         {
@@ -115,34 +117,6 @@ namespace Library_Managerment_System
             }
             return true;
         }
-        private void save_books_admin() {
-            try {
-                FileStream file = new FileStream("books.dat", FileMode.Create);
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(file, bookList);
-                file.Close();
-                MessageBox.Show("Ghi dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            } catch (Exception fe)
-            {
-                MessageBox.Show(fe.Message);
-
-            }
-        }
-        private void AdminPage_Load(object sender, EventArgs e)
-        {
-            try {
-                //bookList = new LinkedList<C_book>();
-                FileStream file = new FileStream("books.dat", FileMode.Open);
-                BinaryFormatter bf = new BinaryFormatter();
-                bookList = bf.Deserialize(file) as LinkedList<C_book>;
-                file.Close();
-                show(bookList);
-            } catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-       
-        }
         private void event_click_add(object sender, EventArgs e)
         {
 
@@ -154,18 +128,23 @@ namespace Library_Managerment_System
                 x.author = txt_author.Text;
                 x.category = txt_category.Text;
                 x.quantity = int.Parse(txt_quantity.Text);
-                LinkedListNode <C_book> newBook= new LinkedListNode<C_book>(x);
-                bookList.AddFirst(newBook);
-                show(bookList);
+                if (BookManager.Instance.InsertFood(x.codeBook, x.nameBook, x.author, x.category, x.quantity))
+                {
+                    show();
+                }
+                else
+                {
+                    MessageBox.Show("Có gì đó sai sai :V", "??????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else if(validator_add() == -3) {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin của sách.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                show(bookList);
+                show();
             }            
             else if (validator_add() == -2)
             {
                 MessageBox.Show("Số lượng sách không đúng định dạng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                show(bookList);
+                show();
             }
             else if (validator_add() == 0)
             {
@@ -178,7 +157,7 @@ namespace Library_Managerment_System
 
                     }
                 }
-                show(bookList);
+                show();
             }
             else
             {
@@ -202,7 +181,7 @@ namespace Library_Managerment_System
                         }
                     }
                 }
-                show(bookList);
+                show();
             }
          
         }
@@ -246,7 +225,7 @@ namespace Library_Managerment_System
                    
                     }
                     MessageBox.Show("Chỉnh sửa thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    show(bookList);
+                    show();
                 }
               
             } catch (Exception ex)
@@ -259,7 +238,7 @@ namespace Library_Managerment_System
         {
             try
             {
-                save_books_admin();
+
             }
             catch (Exception ex)
             {
@@ -270,7 +249,6 @@ namespace Library_Managerment_System
             System.Windows.Forms.DialogResult isLogout = MessageBox.Show("Lưu bản ghi trước khi đăng xuất !", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
             if(isLogout == System.Windows.Forms.DialogResult.Yes)
             {
-                save_books_admin();
                 this.Hide();
                _login.ShowDialog();
             }

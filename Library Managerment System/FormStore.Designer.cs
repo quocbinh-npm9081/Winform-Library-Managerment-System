@@ -37,14 +37,14 @@ namespace Library_Managerment_System
             this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_back = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_back = new System.Windows.Forms.Button();
             this.txt_codeBook = new System.Windows.Forms.TextBox();
             this.txt_nameBook = new System.Windows.Forms.TextBox();
             this.txt_author = new System.Windows.Forms.TextBox();
             this.txt_quantity = new System.Windows.Forms.TextBox();
             this.txt_createdAt = new System.Windows.Forms.TextBox();
             this.txt_category = new System.Windows.Forms.TextBox();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,10 +128,10 @@ namespace Library_Managerment_System
             // 
             this.btn_back.Location = new System.Drawing.Point(1026, 133);
             this.btn_back.Name = "btn_back";
-            this.btn_back.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btn_back.BackColor = System.Drawing.Color.LightBlue;
             this.btn_back.Size = new System.Drawing.Size(150, 50);
             this.btn_back.TabIndex = 1;
-            this.btn_back.Values.Text = "Trở lại";
+            this.btn_back.Text = "Trở lại";
             this.btn_back.Click += new System.EventHandler(this.btn_back_click);
             // 
             // txt_codeBook
@@ -208,10 +208,10 @@ namespace Library_Managerment_System
             // 
             this.kryptonButton1.Location = new System.Drawing.Point(853, 133);
             this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.kryptonButton1.BackColor = System.Drawing.Color.LightBlue;
             this.kryptonButton1.Size = new System.Drawing.Size(155, 50);
             this.kryptonButton1.TabIndex = 9;
-            this.kryptonButton1.Values.Text = "Trả sách";
+            this.kryptonButton1.Text = "Trả sách";
             this.kryptonButton1.Click += new System.EventHandler(this.btn_returnBook_click);
             // 
             // FormStore
@@ -245,7 +245,7 @@ namespace Library_Managerment_System
         #endregion
 
         private System.Windows.Forms.DataGridView dgv;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_back;
+        private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameBook;
         private System.Windows.Forms.DataGridViewTextBoxColumn author;
@@ -258,6 +258,6 @@ namespace Library_Managerment_System
         private System.Windows.Forms.TextBox txt_quantity;
         private System.Windows.Forms.TextBox txt_createdAt;
         private System.Windows.Forms.TextBox txt_category;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private System.Windows.Forms.Button kryptonButton1;
     }
 }
