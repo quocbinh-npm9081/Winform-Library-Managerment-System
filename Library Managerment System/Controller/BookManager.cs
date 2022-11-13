@@ -36,23 +36,34 @@ namespace Library_Managerment_System.Controller
             return list;
         }
 
-        
-        public bool InsertFood(string id, string name, string author, string category, int quantity)
+        /// <summary>
+        /// Insert book with paramaters
+        /// </summary>
+        /// <param name="id">codebook</param>
+        /// <param name="name">namebook</param>
+        /// <param name="author">author</param>
+        /// <param name="category">category</param>
+        /// <param name="quantity">quatity</param>
+        /// <returns></returns>
+        public bool InsertBook(string id, string name, string author, string category, int quantity)
         {
             string query = string.Format("INSERT INTO BOOK(bookID,bookName,bookAuthor,bookCategory,quantity,releaseDate)" +
-                         "VALUES('{0}', '{1}', '{2}', '{3}', {4}, GETDATE());",id,name,author,category,quantity);
+                         "VALUES(N'{0}', N'{1}', N'{2}', N'{3}', {4}, GETDATE());",id,name,author,category,quantity);
             int result = DataController.Instance.ExcuteNonQuery(query);
             return result > 0;
         }
-        public bool EditFood()
+
+
+        public bool EditBook(string id, string name, string author, string category, int quantity)
         {
-            string query = string.Format("");
+            string query = string.Format("UPDATE BOOK SET  bookName=N'{0}', bookAuthor=N'{1}', " +
+                "bookCategory=N'{2}', quantity={3} WHERE bookID=N'{4}'",name,author,category,quantity,id);
             int result = DataController.Instance.ExcuteNonQuery(query);
             return result > 0;
         }
-        public bool DeleteFood(int id)
+        public bool DeleteBook(string id)
         {
-            string query = string.Format("");
+            string query = string.Format("DELETE BOOK WHERE bookID=N'{0}'",id);
             int result = DataController.Instance.ExcuteNonQuery(query);
             return result > 0;
         }

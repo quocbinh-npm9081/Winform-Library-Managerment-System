@@ -65,10 +65,14 @@
     <Compile Include="BorrowBooks.Designer.cs">
       <DependentUpon>BorrowBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\AccountManager.cs" />
     <Compile Include="Controller\BookManager.cs" />
+    <Compile Include="Controller\BorrowBookManager.cs" />
+    <Compile Include="Controller\CategoryManager.cs" />
     <Compile Include="Controller\DataController.cs" />
-    <Compile Include="C_book.cs" />
-    <Compile Include="C_YourBooks.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\C_book.cs" />
     <Compile Include="FormStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +85,7 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\C_YourBooks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentPage.cs">
@@ -130,8 +135,6 @@
   <ItemGroup>
     <None Include="img_C#_project\UI caidat.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

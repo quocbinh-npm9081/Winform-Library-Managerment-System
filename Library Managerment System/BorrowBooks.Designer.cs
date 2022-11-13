@@ -108,6 +108,7 @@ namespace Library_Managerment_System
             this.btn_add.TabIndex = 11;
             this.btn_add.Text = "Đặt sách";
             this.btn_add.UseVisualStyleBackColor = false;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // kryptonButton3
             // 
@@ -118,6 +119,7 @@ namespace Library_Managerment_System
             this.kryptonButton3.TabIndex = 13;
             this.kryptonButton3.Text = "Sách của bạn";
             this.kryptonButton3.UseVisualStyleBackColor = false;
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
             // 
             // btn_log
             // 
@@ -265,10 +267,6 @@ namespace Library_Managerment_System
 
         }
 
-        private void BorrowBooks_Load(object sender, EventArgs e)
-        {
-            
-        }
 
         #endregion
         private System.Windows.Forms.TextBox txt_nameBook;

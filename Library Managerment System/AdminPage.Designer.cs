@@ -47,8 +47,11 @@ namespace Library_Managerment_System
             this.kryptonButton1 = new System.Windows.Forms.Button();
             this.kryptonButton2 = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
-            this.txt_category = new System.Windows.Forms.ComboBox();
+            this.cbb_category = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.userName_txt = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_admin)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_codeBook
@@ -56,7 +59,7 @@ namespace Library_Managerment_System
             this.txt_codeBook.BackColor = System.Drawing.Color.LavenderBlush;
             this.txt_codeBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_codeBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_codeBook.Location = new System.Drawing.Point(258, 138);
+            this.txt_codeBook.Location = new System.Drawing.Point(258, 137);
             this.txt_codeBook.Name = "txt_codeBook";
             this.txt_codeBook.Size = new System.Drawing.Size(568, 32);
             this.txt_codeBook.TabIndex = 5;
@@ -66,7 +69,7 @@ namespace Library_Managerment_System
             this.txt_nameBook.BackColor = System.Drawing.Color.LavenderBlush;
             this.txt_nameBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_nameBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nameBook.Location = new System.Drawing.Point(258, 186);
+            this.txt_nameBook.Location = new System.Drawing.Point(258, 185);
             this.txt_nameBook.Name = "txt_nameBook";
             this.txt_nameBook.Size = new System.Drawing.Size(568, 32);
             this.txt_nameBook.TabIndex = 6;
@@ -133,7 +136,7 @@ namespace Library_Managerment_System
             this.dgv_admin.RowTemplate.Height = 28;
             this.dgv_admin.Size = new System.Drawing.Size(1062, 280);
             this.dgv_admin.TabIndex = 12;
-            this.dgv_admin.SelectionChanged += new System.EventHandler(this.event_selectionChanged_click);
+            this.dgv_admin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_admin_CellClick);
             // 
             // maSach
             // 
@@ -213,25 +216,37 @@ namespace Library_Managerment_System
             this.btn_save.UseVisualStyleBackColor = false;
             this.btn_save.Click += new System.EventHandler(this.event_save_click);
             // 
-            // txt_category
+            // cbb_category
             // 
-            this.txt_category.BackColor = System.Drawing.Color.LavenderBlush;
-            this.txt_category.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txt_category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txt_category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txt_category.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_category.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txt_category.FormattingEnabled = true;
-            this.txt_category.Items.AddRange(new object[] {
-            "Khoa học - Công nghệ",
-            "Văn Học",
-            "Kỹ năng sống",
-            "Văn hóa - Xã hội",
-            "Lịch Sử"});
-            this.txt_category.Location = new System.Drawing.Point(258, 280);
-            this.txt_category.Name = "txt_category";
-            this.txt_category.Size = new System.Drawing.Size(568, 40);
-            this.txt_category.TabIndex = 16;
+            this.cbb_category.BackColor = System.Drawing.Color.LavenderBlush;
+            this.cbb_category.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbb_category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbb_category.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_category.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbb_category.FormattingEnabled = true;
+            this.cbb_category.Location = new System.Drawing.Point(258, 280);
+            this.cbb_category.Name = "cbb_category";
+            this.cbb_category.Size = new System.Drawing.Size(568, 40);
+            this.cbb_category.TabIndex = 16;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userName_txt});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 33);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // userName_txt
+            // 
+            this.userName_txt.Name = "userName_txt";
+            this.userName_txt.Size = new System.Drawing.Size(63, 29);
+            this.userName_txt.Text = "User";
             // 
             // AdminPage
             // 
@@ -239,8 +254,8 @@ namespace Library_Managerment_System
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1280, 712);
-            this.Controls.Add(this.txt_category);
+            this.ClientSize = new System.Drawing.Size(1280, 721);
+            this.Controls.Add(this.cbb_category);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.kryptonButton1);
@@ -251,24 +266,24 @@ namespace Library_Managerment_System
             this.Controls.Add(this.txt_author);
             this.Controls.Add(this.txt_nameBook);
             this.Controls.Add(this.txt_codeBook);
+            this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdminPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminPage";
             this.Load += new System.EventHandler(this.AdminPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_admin)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private void AdminPage_Load(object sender, EventArgs e)
-        {
-           
-        }
 
         #endregion
         private System.Windows.Forms.TextBox txt_codeBook;
@@ -286,6 +301,8 @@ namespace Library_Managerment_System
         private System.Windows.Forms.DataGridViewTextBoxColumn tacGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaiSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuong;
-        private System.Windows.Forms.ComboBox txt_category;
+        private System.Windows.Forms.ComboBox cbb_category;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem userName_txt;
     }
 }

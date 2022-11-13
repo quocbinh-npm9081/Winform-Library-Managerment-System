@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library_Managerment_System.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,35 +18,7 @@ namespace Library_Managerment_System
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_click_exit(object sender, EventArgs e)
         {
@@ -54,32 +27,27 @@ namespace Library_Managerment_System
 
         private void btn_click_login(object sender, EventArgs e)
         {
-            if (text_userName.Text == "admin" || text_userName.Text == "stu")
+            string username = text_userName.Text;
+            string password = text_password.Text;
+            if (AccountManager.Instance.Login(username,password))
             {
-                if (text_password.Text == "admin" || text_password.Text == "stu")
+                string accountKind = AccountManager.Instance.GetAccountByUsername(username).Kind;
+                if (accountKind=="admin")
                 {
-                    string userName = text_userName.Text;
-                    if (userName == "admin")
-                    {
-                        AdminPage adminHomePage = new AdminPage();
-                        this.Hide();
-                        adminHomePage.ShowDialog();
-                    }
-                    if (userName == "stu")
-                    {
-                        StudentPage userHomePage = new StudentPage();
-                        this.Hide();
-                        userHomePage.ShowDialog();
-                    }
+                    AdminPage adminHomePage = new AdminPage(username);
+                    this.Hide();
+                    adminHomePage.ShowDialog();
                 }
-                else
+                else 
                 {
-                    MessageBox.Show("Incorrect Password !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    StudentPage userHomePage = new StudentPage();
+                    this.Hide();
+                    userHomePage.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Incorrect User Name !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect User Name or Password !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

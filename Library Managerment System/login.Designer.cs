@@ -88,7 +88,6 @@ namespace Library_Managerment_System
             this.label2.Size = new System.Drawing.Size(156, 26);
             this.label2.TabIndex = 5;
             this.label2.Text = "Tên đăng nhập";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // text_userName
             // 
@@ -100,7 +99,6 @@ namespace Library_Managerment_System
             this.text_userName.Name = "text_userName";
             this.text_userName.Size = new System.Drawing.Size(300, 37);
             this.text_userName.TabIndex = 6;
-            this.text_userName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panel1
             // 
@@ -120,7 +118,6 @@ namespace Library_Managerment_System
             this.label3.Size = new System.Drawing.Size(101, 26);
             this.label3.TabIndex = 8;
             this.label3.Text = "Mật khẩu";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // text_password
             // 
@@ -188,7 +185,6 @@ namespace Library_Managerment_System
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -20,17 +20,25 @@ namespace Library_Managerment_System
     {
         private List<C_book> bookList;
         private login _login = new login();
-        public AdminPage()
+        public AdminPage(string username)
         {
-            bookList = BookManager.Instance.GetBookList();
             InitializeComponent();
+            userName_txt.Text = username;
             show();
+            LoadCategoryIntoCombobox(cbb_category);
         }
         private void show()
         {
+            bookList = BookManager.Instance.GetBookList();
             BindingSource ds = new BindingSource();
             ds.DataSource = bookList.ToList();
             dgv_admin.DataSource = ds;
+        }
+
+        void LoadCategoryIntoCombobox(ComboBox cb)
+        {
+            cb.DataSource = CategoryManager.Instance.GetCategoryList();
+            cb.DisplayMember = "categoryName";
         }
         private int validator_add()
         {
@@ -62,7 +70,7 @@ namespace Library_Managerment_System
 
                         if (txt_codeBook.Text == a.codeBook)
                         {
-                            if (txt_nameBook.Text == a.nameBook && txt_author.Text == a.author && txt_category.Text == a.category)
+                            if (txt_nameBook.Text == a.nameBook && txt_author.Text == a.author && cbb_category.Text == a.category)
                             {
                                 return 0;
                             }
@@ -101,7 +109,7 @@ namespace Library_Managerment_System
                     }
                     else
                     {
-                        if (txt_category.Text == "")
+                        if (cbb_category.Text == "")
                         {
                             MessageBox.Show("Không được bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
@@ -126,15 +134,12 @@ namespace Library_Managerment_System
                 x.codeBook = txt_codeBook.Text;
                 x.nameBook = txt_nameBook.Text;
                 x.author = txt_author.Text;
-                x.category = txt_category.Text;
+                x.category = cbb_category.Text;
                 x.quantity = int.Parse(txt_quantity.Text);
-                if (BookManager.Instance.InsertFood(x.codeBook, x.nameBook, x.author, x.category, x.quantity))
+                if (BookManager.Instance.InsertBook(x.codeBook, x.nameBook, x.author, x.category, x.quantity))
                 {
+                    MessageBox.Show("Thêm thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     show();
-                }
-                else
-                {
-                    MessageBox.Show("Có gì đó sai sai :V", "??????", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if(validator_add() == -3) {
@@ -169,63 +174,37 @@ namespace Library_Managerment_System
             System.Windows.Forms.DialogResult isDetroy = MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             if (isDetroy == System.Windows.Forms.DialogResult.OK)
             {
-                foreach (DataGridViewRow r in dgv_admin.SelectedRows)
+                if (BookManager.Instance.DeleteBook(txt_codeBook.Text))
                 {
-                    string code = r.Cells[0].Value.ToString();
-                    foreach (C_book a in bookList)
-                    {
-                        if (a.codeBook == code)
-                        {
-                            bookList.Remove(a);
-                            break;
-                        }
-                    }
+                    show();
                 }
-                show();
+                else
+                {
+                    MessageBox.Show("Có gì đó sai sai :V", "??????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
          
         }
-        private void event_selectionChanged_click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow r in dgv_admin.SelectedRows)
-            {
-                string code = r.Cells[0].Value.ToString();
-            
-                foreach (C_book x in bookList)
-                {
-                    if (x.codeBook == code)
-                    {
-                        txt_codeBook.Text = x.codeBook;
-                        txt_nameBook.Text = x.nameBook;
-                        txt_author.Text = x.author;
-                        txt_category.Text = x.category;
-                        txt_quantity.Text = x.quantity.ToString();
-                        return;
 
-                    }
-                }
-            }
-        }
         private void event_edit_click(object sender, EventArgs e)
         {
             try {
                 if (validator_edit())
                 {
                     string code = txt_codeBook.Text;
-                    foreach (C_book x in bookList)
+                    string name = txt_nameBook.Text;
+                    string author = txt_author.Text;
+                    string category = cbb_category.Text;
+                    int quantity = int.Parse(txt_quantity.Text);
+                    if (BookManager.Instance.EditBook(code, name, author, category, quantity))
                     {
-                        if (x.codeBook == code)
-                        {
-                            x.nameBook = txt_nameBook.Text;
-                            x.author = txt_author.Text;
-                            x.category = txt_category.Text;
-                            x.quantity = int.Parse(txt_quantity.Text);
-                            break;
-                        }
-                   
+                        MessageBox.Show("Chỉnh sửa thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        show();
                     }
-                    MessageBox.Show("Chỉnh sửa thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    show();
+                    else
+                    {
+                        MessageBox.Show("Có gì đó sai sai :V", "??????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
               
             } catch (Exception ex)
@@ -245,24 +224,37 @@ namespace Library_Managerment_System
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void event_logout_click(object sender, EventArgs e) {
-            System.Windows.Forms.DialogResult isLogout = MessageBox.Show("Lưu bản ghi trước khi đăng xuất !", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+            System.Windows.Forms.DialogResult isLogout = MessageBox.Show("Bạn có chắc muốn thoát? !", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
             if(isLogout == System.Windows.Forms.DialogResult.Yes)
             {
                 this.Hide();
                _login.ShowDialog();
             }
-            if (isLogout == System.Windows.Forms.DialogResult.No)
-            {
-                System.Windows.Forms.DialogResult isExit = MessageBox.Show("Bản ghi sẽ không được lưu,bạn có chắc muốn đăng xuất ?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
-                if(isExit == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.Hide();
-                    _login.ShowDialog();
-                }
-                  
-            }
         
+        }
+
+        private void dgv_admin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv_admin.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dgv_admin.CurrentRow.Selected = true;
+                txt_codeBook.Text = dgv_admin.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txt_nameBook.Text = dgv_admin.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txt_author.Text = dgv_admin.Rows[e.RowIndex].Cells[2].Value.ToString();
+                cbb_category.Text = dgv_admin.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txt_quantity.Text = dgv_admin.Rows[e.RowIndex].Cells[4].Value.ToString();
+            }
+        }
+
+        private void AdminPage_Load(object sender, EventArgs e)
+        {
+            txt_codeBook.Text = dgv_admin.Rows[0].Cells[0].Value.ToString();
+            txt_nameBook.Text = dgv_admin.Rows[0].Cells[1].Value.ToString();
+            txt_author.Text = dgv_admin.Rows[0].Cells[2].Value.ToString();
+            cbb_category.Text = dgv_admin.Rows[0].Cells[3].Value.ToString();
+            txt_quantity.Text = dgv_admin.Rows[0].Cells[4].Value.ToString();
         }
     }
 }
