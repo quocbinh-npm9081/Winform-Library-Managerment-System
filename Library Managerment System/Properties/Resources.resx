@@ -121,4 +121,10 @@
   <data name="UI caidat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img_C#_project\UI caidat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="5626873" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img_C#_project\5626873.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="56268731" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img_C#_project\5626873.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

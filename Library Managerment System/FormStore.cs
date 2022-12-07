@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Library_Managerment_System.Model;
+using Library_Managerment_System.Controller;
 
 namespace Library_Managerment_System
 {
@@ -18,22 +19,27 @@ namespace Library_Managerment_System
     //
     public partial class FormStore : Form
     {
-        private LinkedList<C_YourBooks> yourBooks;
-        private LinkedList<C_book> books;
+        private List<C_YourBooks> yourBooks;
 
         public FormStore()
         {
             InitializeComponent();
         }
-        private void show(LinkedList<C_YourBooks> yourBooks)
+        private void show()
         {
+            yourBooks = BorrowBookManager.Instance.GetListBorrowedBooks();
             BindingSource ds = new BindingSource();
             ds.DataSource = yourBooks.ToList();
             dgv.DataSource = ds;
         }
         private void FormStore_Load(object sender, EventArgs e)
         {
-            show(yourBooks);
+            show();
+            txt_billID.Text = dgv.Rows[0].Cells[0].Value.ToString();
+            txt_codeBook.Text = dgv.Rows[0].Cells[1].Value.ToString();
+            txt_category.Text = dgv.Rows[0].Cells[2].Value.ToString();
+            txt_quantity.Text = dgv.Rows[0].Cells[3].Value.ToString();
+            txt_createdAt.Text= dgv.Rows[0].Cells[4].Value.ToString();
         }
 
         private void btn_back_click(object sender, EventArgs e)
@@ -43,91 +49,31 @@ namespace Library_Managerment_System
             borrowBooks.ShowDialog();
         }
 
-        private void event_selected_change(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow r in dgv.SelectedRows)
-            {
-                string code = r.Cells[1].Value.ToString();
-                foreach (C_YourBooks x in yourBooks)
-                {
-                    if (x.codeBook == code)
-                    {
-                        txt_codeBook.Text = x.codeBook;
-                        txt_nameBook.Text = x.nameBook;
-                        txt_author.Text = x.author;
-                        txt_category.Text = x.category;
-                        txt_quantity.Text = x.quantity.ToString();
-                        txt_createdAt.Text = x.createdAt.ToString();
-                        return;
-                    }
-                }
-            }
-        }
 
-      
-        private void txt_codeBook_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private bool validator()
-        {
-            int st;
-            if (int.TryParse(txt_quantity.Text.Trim(), out st) == false|| int.Parse(txt_quantity.Text.Trim()) < 0)
-            {
-                return false;
-            }
-            return true;
-        }
         private void btn_returnBook_click(object sender, EventArgs e)
         {
-            if (validator())
+            int billID = int.Parse(txt_billID.Text);
+            if (BorrowBookManager.Instance.DeleteBorrowBook(billID))
             {
-                string code= txt_codeBook.Text;
-                //Cập nhập dữ liệu sách của admin
-                for(LinkedListNode<C_book> a = books.First; a != null; a = a.Next)
-                {
-                    if (a.Value.codeBook == code)
-                    {                          
-                       a.Value.quantity = a.Value.quantity + int.Parse(txt_quantity.Text.Trim());
-                        break;
-                    }
-                    else
-                    {
-                        C_book y = new C_book();
-                        y.codeBook = txt_codeBook.Text.Trim();
-                        y.nameBook = txt_nameBook.Text.Trim();
-                        y.author = txt_author.Text.Trim();
-                        y.category = txt_category.Text;
-                        y.quantity = int.Parse(txt_quantity.Text.Trim());
-                        LinkedListNode<C_book> newBook = new LinkedListNode<C_book>(y);
-                        books.AddFirst(newBook);
-                        break;
-                    }
-                }
-                //Cập nhập dữ liệu sách của Student
-                for(LinkedListNode<C_YourBooks> x = yourBooks.First; x!=null;x=x.Next  )
-                {
-                    if (x.Value.codeBook == code)
-                    {
-
-                        x.Value.quantity = x.Value.quantity - int.Parse(txt_quantity.Text.Trim());
-                        if(x.Value.quantity <= 0)
-                        {
-                            yourBooks.Remove(x);
-                            break;
-                        }
-                        break;
-                    }
-               
-                }
-                MessageBox.Show("Trả sách thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                show(yourBooks);
-
+                MessageBox.Show("Trả sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                show();
             }
             else
             {
                 MessageBox.Show("Số lượng sách không đúng định dạng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_quantity.Text = "1";
+            }
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dgv.CurrentRow.Selected = true;
+                txt_billID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txt_codeBook.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txt_category.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txt_quantity.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txt_createdAt.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
             }
         }
     }

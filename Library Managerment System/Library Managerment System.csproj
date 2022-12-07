@@ -135,6 +135,8 @@
   <ItemGroup>
     <None Include="img_C#_project\UI caidat.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="img_C#_project\5626873.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

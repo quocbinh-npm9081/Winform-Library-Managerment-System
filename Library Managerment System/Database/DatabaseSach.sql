@@ -83,7 +83,7 @@ CREATE TABLE BORROWBOOK
 
 SELECT * FROM BORROWBOOK
 ALTER TABLE BORROWBOOK ADD CONSTRAINT
-FK_BorrowBook_Book FOREIGN KEY (bookID) REFERENCES BOOK(bookID)
+FK_BorrowBook_Account FOREIGN KEY (accountID) REFERENCES ACCOUNT(accountID)
 ALTER TABLE BORROWBOOK ADD CONSTRAINT
 FK_BorrowBook_Category FOREIGN KEY (categoryID) REFERENCES CATEGORY(categoryID)
 
@@ -108,4 +108,20 @@ BEGIN
 	UPDATE BOOK SET quantity= quantity+(SELECT amount FROM deleted WHERE bookID=deleted.bookID)
 	FROM BOOK JOIN deleted ON BOOK.bookID=deleted.bookID
 END
+
+
+--CREATE TABLE CATEGORY
+CREATE TABLE AUTHOR
+(
+	categoryName nvarchar(50) primary key not null,
+	gender nvarchar(10),
+	nation nvarchar(10),
+	birthDate Date
+)
+SELECT * FROM AUTHOR
+INSERT INTO AUTHOR VALUES(N'J.R.R Tolkien',N'male',N'United',N'3/1/1892')
+INSERT INTO AUTHOR VALUES(N'Andrzej Sapkowski',N'male',N'Poland',N'6/21/1948')
+INSERT INTO AUTHOR VALUES(N'Frank Herbert',N'male',N'USA',N'10/8/1920')
+ALTER TABLE BOOK ADD CONSTRAINT FK_BOOK_AUTHOR FOREIGN KEY(bookAuthor) REFERENCES AUTHOR(authorName) 
+
 

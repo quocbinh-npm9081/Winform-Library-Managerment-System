@@ -68,10 +68,20 @@ namespace Library_Managerment_System
             yourBooks.ShowDialog();
         }
 
+        private bool validator()
+        {
+            int st;
+            if (int.TryParse(txt_quantity.Text.Trim(), out st) == false || int.Parse(txt_quantity.Text.Trim()) < 0)
+            {
+                return false;
+            }
+            return true;
+        }
         private void btn_add_Click(object sender, EventArgs e)
         {
             //TODO Add bill
-            if(txt_quantity.Text=="" || int.Parse(txt_quantity.Text) <= 0)
+           
+            if(!validator())
             {
                 MessageBox.Show("Vui lòng nhập đúng số lượng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Library_Managerment_System.Model;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library_Managerment_System.Controller
 {
-    class BorrowBookManager
+    public class BorrowBookManager
     {
 
         private static BorrowBookManager instance;
@@ -17,6 +19,17 @@ namespace Library_Managerment_System.Controller
             private set { instance = value; }
         }
 
+        public List<C_YourBooks> GetListBorrowedBooks()
+        {
+            List<C_YourBooks> list = new List<C_YourBooks>();
+            DataTable data = DataController.Instance.ExcuteQuery("SELECT * FROM BORROWBOOK");
+            foreach (DataRow item in data.Rows)
+            {
+                C_YourBooks food = new C_YourBooks(item);
+                list.Add(food);
+            }
+            return list;
+        }
 
         /// <summary>
         /// Insert book with paramaters
@@ -30,6 +43,13 @@ namespace Library_Managerment_System.Controller
         public bool InsertBorrowBook(string bookID,string categoryID, int amount)
         {
             string query = string.Format("INSERT INTO BORROWBOOK(bookID,categoryID,amount,borrowDate) VALUES (N'{0}',N'{1}',{2},GETDATE())", bookID,categoryID,amount);
+            int result = DataController.Instance.ExcuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteBorrowBook(int billID)
+        {
+            string query = string.Format("DELETE BORROWBOOK WHERE billID={0}",billID);
             int result = DataController.Instance.ExcuteNonQuery(query);
             return result > 0;
         }

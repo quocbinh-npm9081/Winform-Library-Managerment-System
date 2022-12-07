@@ -63,6 +63,26 @@ namespace Library_Managerment_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5626873 {
+            get {
+                object obj = ResourceManager.GetObject("5626873", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _56268731 {
+            get {
+                object obj = ResourceManager.GetObject("56268731", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UI_caidat {
             get {
                 object obj = ResourceManager.GetObject("UI caidat", resourceCulture);
